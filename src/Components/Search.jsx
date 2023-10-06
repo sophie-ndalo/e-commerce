@@ -29,6 +29,7 @@ function Search() {
   const buttonStyle = {
     verticalAlign: 'top', // Align the button at the top
     marginLeft: '10px', // Adjust this value to control the spacing between input and button
+    borderRadius: "5px", //
   };
 
   return (
