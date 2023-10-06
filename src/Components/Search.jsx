@@ -34,6 +34,7 @@ function Search() {
 
   return (
     <div className="search-container" style={containerStyle}>
+      
       <div style={inputContainerStyle}>
         <input className="search-input" style={inputStyle} placeholder="Search" />
         <FaSistrix className="search-icon" style={iconStyle} />

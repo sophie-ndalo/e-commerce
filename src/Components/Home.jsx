@@ -1,12 +1,10 @@
 import React from 'react'
 
-
 function Home() {
   return (
-    <>
-    
-    <div></div>
-    </>
+    <div>
+      <p>sell on jumia clone</p>
+    </div>
   )
 }
 
