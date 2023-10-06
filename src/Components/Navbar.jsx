@@ -1,6 +1,8 @@
 import React from 'react'
 import Search from './Search'
 import Account from './Account'
+import Cart from './Cart'
+
 
 function Navbar() {
   return (
@@ -9,6 +11,7 @@ function Navbar() {
             <h1>Jumia Clone</h1>
             <Search/>
             <Account/>
+            <Cart/>
         </div>
         
     </nav>
