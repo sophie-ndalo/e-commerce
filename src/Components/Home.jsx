@@ -4,7 +4,7 @@ import Items from'./Items'
 function Home() {
   return (
     <div>
-      <p>sell on jumia clone</p>
+      <>Home</>
       <Items/>
     </div>
   )

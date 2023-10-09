@@ -1,36 +1,35 @@
-import React, { useState } from 'react'; // Import useState
-import Search from './Search';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Account from './Account';
 import Cart from './Cart';
 import { AiOutlineStar } from 'react-icons/ai';
 
 function Navbar() {
-  const [searchQuery, setSearchQuery] = useState(''); // Define the searchQuery state
-
-  // Define the onSearch function to update the searchQuery state
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
-
   const cartStyle = {
-    marginTop: "-40px",
-    marginLeft: "500px",
+    marginTop: '-40px',
+    marginLeft: '500px',
     zIndex: 1000,
   };
 
+ 
   return (
-    <nav style={{ backgroundColor: "#7A4988", width: "100%", height: "120px" }}>
+    <nav style={{ backgroundColor: '#7A4988', width: '100%', height: '120px', marginTop: '20px' }}>
       <div>
         <h1>
           JUMIA CLONE
-          <AiOutlineStar style={{ marginLeft: "1%" }} />
+          <AiOutlineStar style={{ marginLeft: '1%' }} />
         </h1>
-        {/* Pass the onSearch function as a prop to the Search component */}
-        <Search onSearch={handleSearch} />
         <Account />
         <div style={cartStyle}>
           <Cart />
         </div>
+        <Link to="/electronics" style={{ color: 'white', marginLeft: '20px', textDecoration: 'none' }}>
+          Electronics
+        </Link>
+        <Link to="/" style={{ color: 'white', marginLeft: '20px', textDecoration: 'none' }}>
+          Home
+        </Link>
+        {/* Add the search input and button */}
       </div>
     </nav>
   );
