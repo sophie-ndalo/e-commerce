@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Account from './Account';
 import Cart from './Cart';
@@ -30,6 +30,7 @@ function Navbar() {
           Home
         </Link>
         {/* Add the search input and button */}
+        
       </div>
     </nav>
   );

@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Search from './Search';
 
-function Electronics({ searchQuery }) {
-  const apiUrl = 'https://fakestoreapi.com/products/category/electronics'; // API URL for electronics category
+function Electronics() {
+  const apiUrl = 'https://fakestoreapi.com/products/category/electronics';
   const [electronics, setElectronics] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [filteredElectronics, setFilteredElectronics] = useState([]);
+  const [expanded, setExpanded] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    // Fetch electronics data when the component mounts
+    // Fetch electronics data
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
@@ -17,35 +18,42 @@ function Electronics({ searchQuery }) {
       })
       .then((data) => {
         setElectronics(data);
-        setIsLoading(false);
+        setExpanded(new Array(data.length).fill(false));
       })
       .catch((error) => {
         console.error('Fetch error:', error);
-        setIsLoading(false);
       });
-  }, [apiUrl]);
+  }, []);
 
-  useEffect(() => {
-    // Filter electronics based on searchQuery
-    if (searchQuery) {
-      const filtered = electronics.filter((product) =>
+  const toggleCardExpansion = (index) => {
+    const updatedExpanded = [...expanded];
+    updatedExpanded[index] = !updatedExpanded[index];
+    setExpanded(updatedExpanded);
+  };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const filteredElectronics = searchQuery
+    ? electronics.filter((product) =>
         product.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredElectronics(filtered);
-    } else {
-      setFilteredElectronics(electronics);
-    }
-  }, [searchQuery, electronics]);
+      )
+    : electronics;
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const electronicsListStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: '10px',
+    marginTop: '100px',
+  };
 
   return (
-    <div className="electronics">
-      <h2>Electronics</h2>
-      <div className="product-listings">
-        {filteredElectronics.map((product) => (
+    <div className="product-listings">
+      <Search onSearch={handleSearch} />
+      <div style={electronicsListStyle}>
+        {filteredElectronics.map((product, index) => (
           <div
             key={product.id}
             className="product-card"
@@ -57,16 +65,34 @@ function Electronics({ searchQuery }) {
               boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
               cursor: 'pointer',
             }}
+            onClick={() => toggleCardExpansion(index)}
           >
             <img src={product.image} alt={product.title} style={{ maxWidth: '100%', height: '100px' }} />
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '10px', cursor: 'pointer' }}>
-              {product.title}
+            <h2
+              style={{
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                marginBottom: '10px',
+                cursor: 'pointer',
+              }}
+            >
+              {expanded[index] ? product.title : product.title.split(' ').slice(0, 3).join(' ')}
             </h2>
-            <p style={{ fontSize: '1rem', marginBottom: '10px', cursor: 'pointer' }}>{product.description}</p>
+            <p
+              style={{
+                fontSize: '1rem',
+                marginBottom: '10px',
+                cursor: 'pointer',
+              }}
+            >
+              {expanded[index] ? product.description : product.description.split(' ').slice(0, 3).join(' ')}
+            </p>
             <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>Price: ${product.price}</p>
             <p style={{ fontSize: '1rem' }}>Category: {product.category}</p>
-            <p style={{ fontSize: '1rem' }}>Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
-            <button>BUY</button>
+            <p style={{ fontSize: '1rem' }}>
+              Rating: {product.rating.rate} ({product.rating.count} reviews)
+            </p>
+            {expanded[index] && <button>ADD TO CART</button>}
           </div>
         ))}
       </div>
