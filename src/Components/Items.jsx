@@ -35,6 +35,14 @@ function Items() {
     setSearchQuery(query);
   };
 
+  const truncateText = (text, maxLength) => {
+    const words = text.split(' ');
+    if (words.length <= maxLength) {
+      return text;
+    }
+    return words.slice(0, maxLength).join(' ') + '...';
+  };
+
   const filteredProducts = searchQuery
     ? products.filter((product) =>
         product.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -74,18 +82,24 @@ function Items() {
                 fontWeight: 'bold',
                 marginBottom: '10px',
                 cursor: 'pointer',
+                whiteSpace: expanded[index] ? 'normal' : 'nowrap',
+                overflow: 'hidden',
+                textOverflow: expanded[index] ? 'unset' : 'ellipsis',
               }}
             >
-              {expanded[index] ? product.title : product.title.split(' ').slice(0, 3).join(' ')}
+              {expanded[index] ? product.title : truncateText(product.title, 3)}
             </h2>
             <p
               style={{
                 fontSize: '1rem',
                 marginBottom: '10px',
                 cursor: 'pointer',
+                whiteSpace: expanded[index] ? 'normal' : 'nowrap',
+                overflow: 'hidden',
+                textOverflow: expanded[index] ? 'unset' : 'ellipsis',
               }}
             >
-              {expanded[index] ? product.description : product.description.split(' ').slice(0, 3).join(' ')}
+              {expanded[index] ? product.description : truncateText(product.description, 3)}
             </p>
             <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>Price: ${product.price}</p>
             <p style={{ fontSize: '1rem' }}>Category: {product.category}</p>

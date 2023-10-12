@@ -14,25 +14,26 @@ function Navbar() {
  
   return (
     <nav style={{ backgroundColor: '#7A4988', width: '100%', height: '120px', marginTop: '20px' }}>
-      <div>
-        <h1>
-          JUMIA CLONE
-          <AiOutlineStar style={{ marginLeft: '1%' }} />
-        </h1>
-        <Account />
-        <div style={cartStyle}>
-          <Cart />
-        </div>
-        <Link to="/electronics" style={{ color: 'white', marginLeft: '20px', textDecoration: 'none' }}>
-          Electronics
-        </Link>
-        <Link to="/" style={{ color: 'white', marginLeft: '20px', textDecoration: 'none' }}>
-          Home
-        </Link>
-        {/* Add the search input and button */}
-        
-      </div>
-    </nav>
+  <div>
+    <h1>
+      JUMIA CLONE
+      <AiOutlineStar style={{ marginLeft: '1%' }} />
+    </h1>
+    <Account />
+    <div style={cartStyle}>
+      <Cart />
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+      <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
+        Home
+      </Link>
+      <Link to="/electronics" style={{ color: 'white', textDecoration: 'none' }}>
+        Electronics
+      </Link>
+    </div>
+  </div>
+</nav>
+
   );
 }
 

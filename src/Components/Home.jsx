@@ -4,9 +4,7 @@ import Items from'./Items'
 function Home() {
   return (
     <div>
-      <>Home</>
-      
-      <Items/>
+       <Items/>
     </div>
   )
 }
