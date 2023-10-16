@@ -3,6 +3,8 @@ import { Routes, Route} from 'react-router-dom';
 import Home from './Components/Home';
 import Navbar from './Components/Navbar';
 import Electronics from './Components/Electronics';
+import Admin from './Components/Admin';
+import SingleItem from './Components/SingleItem';
 
 
 
@@ -14,7 +16,8 @@ function App() {
     <Routes>
       <Route exact path="/" element={<Home/>} />
       <Route path="/electronics" element={<Electronics/>}/>
-      
+      <Route path="/Admin" element={<Admin/>}/>
+      <Route path="/product/:id" element = { <SingleItem />} />
       {/* Add more routes here */}
     </Routes>
     </div>

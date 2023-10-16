@@ -30,6 +30,9 @@ function Navbar() {
       <Link to="/electronics" style={{ color: 'white', textDecoration: 'none' }}>
         Electronics
       </Link>
+      <Link to="/admin" style={{ color: 'white', textDecoration: 'none' }}>
+        Admin
+      </Link>
     </div>
   </div>
 </nav>
