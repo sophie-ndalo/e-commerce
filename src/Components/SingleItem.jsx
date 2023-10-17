@@ -35,7 +35,7 @@ function SingleItem() {
       }}>
   {product ? (
     <div>
-      <img src={product.image} alt={product.title} style={{ maxWidth: '50%', height: '50%' }} />
+      <img src={product.image} alt={product.title} style={{ maxWidth: '50%', height: '50%', marginLeft: "150px" }} />
       <h2 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>{product.title}</h2>
       <p style={{ fontSize: '1rem' }}>{product.description}</p>
       <p style={{ fontSize: '1rem' }}>Price: ${product.price}</p>

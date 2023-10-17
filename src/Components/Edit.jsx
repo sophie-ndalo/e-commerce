@@ -59,9 +59,15 @@ function Edit({ itemId, onEdit, initialData, onClose }) {
             onChange={(e) => handleFieldChange('price', parseFloat(e.target.value))}
           />
         </div>
+        <div>
+          <label>Category:</label>
+          <input
+            type="text"
+            value={editedData.category}
+            onChange={(e) => handleFieldChange('category', e.target.value)}
+          />
+        </div>
       </form>
-      <button onClick={handleEdit}>Save</button>
-      <button onClick={onClose}>Close</button>
     </div>
   );
 }
