@@ -1,24 +1,28 @@
 import React from "react";
-import { FaShoppingCart } from "react-icons/fa";
 
-function ShoppingCart() {
-  const containerStyle = {
-    display: "flex", // Use flex display to align elements on the same line
-    alignItems: "center", // Align items vertically in the center
-    
-  };
-
-  const iconStyle = {
-    marginRight: "8px", // Add some spacing to the right of the icon
-    height: "16px",
+function Cart({ cart, setCart }) {
+  const removeFromCart = (productId) => {
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (
-    <div style={containerStyle}>
-      <FaShoppingCart style={iconStyle} />
-      <p>cart</p>
+    <div>
+      <h1>Shopping Cart</h1>
+      <ul>
+        {cart.map((item) => (
+          <div key={item.id} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
+            <img src={item.image} alt={item.title} width="100" height="100" />
+            <div>{item.title}</div>
+            <div>${item.price.toFixed(2)}</div>
+            <div>Quantity: {item.quantity}</div>
+            <button onClick={() => removeFromCart(item.id)}>Remove from Cart</button>
+          </div>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default ShoppingCart;
+export default Cart;
