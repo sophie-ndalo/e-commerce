@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-function Cart({ cart, setCart }) {
+function Cart() {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    // Check if the "cart" item is defined in local storage
+    const storedCart = localStorage.getItem("cart");
+
+    if (storedCart) {
+      try {
+        const parsedCart = JSON.parse(storedCart);
+        setCart(parsedCart);
+      } catch (error) {
+        console.error("Error parsing cart data:", error);
+      }
+    }
+  }, []);
+
   const removeFromCart = (productId) => {
     const updatedCart = cart.filter((item) => item.id !== productId);
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    // Reload the page after removing the item from the cart
+    window.location.reload();
   };
 
   return (
