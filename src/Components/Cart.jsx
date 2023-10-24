@@ -26,6 +26,28 @@ function Cart() {
     window.location.reload();
   };
 
+  const incrementQuantity = (productId) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === productId) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  const decrementQuantity = (productId) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === productId) {
+        return { ...item, quantity: Math.max(1, item.quantity - 1) };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
   return (
     <div>
       <h1>Shopping Cart</h1>
@@ -35,7 +57,12 @@ function Cart() {
             <img src={item.image} alt={item.title} width="100" height="100" />
             <div>{item.title}</div>
             <div>${item.price.toFixed(2)}</div>
-            <div>Quantity: {item.quantity}</div>
+            <div>
+              Quantity:{" "}
+              <button onClick={() => decrementQuantity(item.id)}>-</button>
+              {item.quantity}
+              <button onClick={() => incrementQuantity(item.id)}>+</button>
+            </div>
             <button onClick={() => removeFromCart(item.id)}>Remove from Cart</button>
           </div>
         ))}

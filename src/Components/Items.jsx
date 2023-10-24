@@ -24,7 +24,7 @@ function Items() {
   const addToCart = (item) => {
     // Check if the item is already in the cart
     if (!cart.find((cartItem) => cartItem.id === item.id)) {
-      const updatedCart = [...cart, item];
+      const updatedCart = [...cart, { ...item, quantity: 1 }];
       setCart(updatedCart);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
@@ -79,7 +79,13 @@ function Items() {
               <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
                 Price: ${product.price}
               </p>
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
+              {cart.find((cartItem) => cartItem.id === product.id) ? (
+                <div>
+                  <span>Quantity: {cart.find((cartItem) => cartItem.id === product.id).quantity}</span>
+                </div>
+              ) : (
+                <button onClick={() => addToCart(product)}>Add to Cart</button>
+              )}
             </div>
           ))}
         </div>
