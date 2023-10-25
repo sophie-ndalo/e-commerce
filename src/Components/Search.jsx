@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function Search({ onSearch }) {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleInputChange = (e) => {
-    // Update the search query as the user types
-    setSearchQuery(e.target.value);
-    
-    // Pass the search query to the parent component using the onSearch callback
-    onSearch(e.target.value);
-  };
+  
 
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div style={{ marginBottom: '20px', width: "100%",
+    marginLeft: "20%", }}>
       <input
         type="text"
-        placeholder="Search products"
-        value={searchQuery}
-        onChange={handleInputChange}
-        style={{ marginTop: '2px' }}
+        placeholder="Search..."
+        onChange={(e) => onSearch(e.target.value)} // Call the onSearch prop with the search input
+        style={{ marginTop: '2px', borderRadius: "5px",height: "30px", width: "60%"}}
       />
     </div>
   );

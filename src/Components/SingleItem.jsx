@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Cart from './Cart';
 
 const apiUrl = 'https://fakestoreapi.com/products';
-
 function SingleItem() {
   const { id } = useParams();
 
@@ -39,7 +37,6 @@ function SingleItem() {
     } else {
       updatedCart.push({ ...item, quantity: 1 });
     }
-
     setCart(updatedCart);
 
     // Update the cart in local storage
@@ -69,8 +66,7 @@ function SingleItem() {
   };
 
   return (
-    <div>
-      
+    <div> 
       {product ? (
         <div>
           <div>

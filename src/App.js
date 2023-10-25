@@ -10,7 +10,7 @@ import Cart from './Components/Cart';
 
 function App() {
   return (
-    <div className="App" style={{ backgroundColor: '' }}>
+    <div className="App" style={{ backgroundColor: '#FAF9F6' }}>
       <p>sell on jumia clone</p>
       <Navbar />
       <Routes>
