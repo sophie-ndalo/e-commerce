@@ -1,131 +1,101 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Cart from './Cart';
+
+const apiUrl = 'https://fakestoreapi.com/products';
 
 function SingleItem() {
   const { id } = useParams();
+
   const [product, setProduct] = useState(null);
-  const [cartCount, setCartCount] = useState(1);
-  const [isInCart, setIsInCart] = useState(false);
-  const [showIncrement, setShowIncrement] = useState(false); // Control visibility of the increment buttons
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    // Fetch the product data by ID when the component mounts
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+    fetch(`${apiUrl}/${id}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
         }
-        return response.json();
+        return res.json();
       })
-      .then((data) => {
-        setProduct(data);
+      .then((res) => {
+        setProduct(res);
       })
       .catch((error) => {
-        console.error("Fetch error:", error);
+        console.error('Error fetching JSON data:', error);
       });
+
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart);
   }, [id]);
 
-  const addToCart = (productId, quantity) => {
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const productInCartIndex = existingCart.findIndex((item) => item.id === productId);
+  // Function to add an item to the cart
+  const addToCart = (item) => {
+    const updatedCart = [...cart];
+    const existingCartItem = updatedCart.find((cartItem) => cartItem.id === item.id);
 
-    if (productInCartIndex !== -1) {
-      // The product is already in the cart, update its quantity
-      existingCart[productInCartIndex].quantity += quantity;
+    if (existingCartItem) {
+      existingCartItem.quantity++;
     } else {
-      // Create an object for the product to add to the cart
-      const productToAdd = {
-        id: productId,
-        title: product.title,
-        price: product.price,
-        quantity: quantity,
-        // Add other product details such as image here
-      };
-      existingCart.push(productToAdd); // Add the new product to the existing cart
+      updatedCart.push({ ...item, quantity: 1 });
     }
 
-    // Update local storage with the updated cart
-    localStorage.setItem("cart", JSON.stringify(existingCart));
+    setCart(updatedCart);
 
-    setIsInCart(true); // Set isInCart to true after adding the product
-    setShowIncrement(true); // Show the increment buttons after adding to cart
+    // Update the cart in local storage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  const handleIncrement = () => {
-    setCartCount(cartCount + 1);
-    // Update the cart count when the + button is clicked
-    const updatedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const productInCartIndex = updatedCart.findIndex((item) => item.id === id);
-    if (productInCartIndex !== -1) {
-      updatedCart[productInCartIndex].quantity = cartCount + 1; // Update the quantity
+  // Function to increment the quantity of an item in the cart
+  const incrementItem = (itemId) => {
+    const updatedCart = [...cart];
+    const cartItem = updatedCart.find((item) => item.id === itemId);
+    if (cartItem) {
+      cartItem.quantity++;
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const handleDecrement = () => {
-    if (cartCount > 1) {
-      setCartCount(cartCount - 1);
+  // Function to decrement the quantity of an item in the cart
+  const decrementItem = (itemId) => {
+    const updatedCart = [...cart];
+    const cartItem = updatedCart.find((item) => item.id === itemId);
+    if (cartItem && cartItem.quantity > 1) {
+      cartItem.quantity--;
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   };
 
   return (
-    <div
-      className="card"
-      style={{
-        width: "700px",
-        margin: "50px auto",
-        padding: "10px",
-        borderRadius: "5px",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        cursor: "pointer",
-      }}
-    >
+    <div>
+      
       {product ? (
         <div>
-          <img
-            src={product.image}
-            alt={product.title}
-            style={{ maxWidth: "50%", height: "auto", marginLeft: "150px" }}
-          />
-          <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
-            {product.title}
-          </h2>
-          <p style={{ fontSize: "1rem" }}>Price: ${product.price}</p>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              border: "2px solid red",
-              width: "268px",
-              height: "30px",
-            }}
-          >
-            {showIncrement ? ( // Show increment buttons when showIncrement is true
-              <>
-                <button onClick={handleDecrement} style={{ height: "30px" }}>
-                  -
-                </button>
-                <p style={{ margin: "0 8px" }}>{cartCount}</p>
-                <button
-                  onClick={handleIncrement}
-                  style={{ height: "30px" }}
-                >
-                  +
-                </button>
-              </>
+          <div>
+            <img
+              src={product.image}
+              alt={product.title}
+              style={{ maxWidth: '100%', height: '200px' }}
+            />
+          </div>
+          <div>
+            <h2>{product.title}</h2>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+            <p>Category: {product.category}</p>
+            {cart.find((cartItem) => cartItem.id === product.id) ? (
+              <div>
+                 <button onClick={() => decrementItem(product.id)} style={{backgroundColor: "#7A4988"}}>-</button>
+                <span>{cart.find((cartItem) => cartItem.id === product.id).quantity}</span>
+                <button onClick={() => incrementItem(product.id)} style={{backgroundColor: "#7A4988"}}>+</button>
+                <p>item (s) added</p>
+                </div>
             ) : (
-              <button onClick={() => addToCart(id, cartCount)}>
-                ADD TO CART
-              </button>
+              <button onClick={() => addToCart(product)}>Add to Cart</button>
             )}
           </div>
-          <p style={{ fontSize: "1rem" }}>{product.description}</p>
-          <p style={{ fontSize: "1rem" }}>Category: {product.category}</p>
-          {isInCart ? (
-            <button style={{ background: "red", color: "white" }}>
-              Added to Cart
-            </button>
-          ) : null}
         </div>
       ) : (
         <p>Loading...</p>

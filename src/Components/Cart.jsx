@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AiOutlineDelete } from 'react-icons/ai';
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -59,11 +60,11 @@ function Cart() {
             <div>${item.price.toFixed(2)}</div>
             <div>
               Quantity:{" "}
-              <button onClick={() => decrementQuantity(item.id)}>-</button>
+              <button onClick={() => decrementQuantity(item.id)} style={{backgroundColor: "#7A4988", fontWeight: 'bold'}}>-</button>
               {item.quantity}
-              <button onClick={() => incrementQuantity(item.id)}>+</button>
+              <button onClick={() => incrementQuantity(item.id)} style={{backgroundColor: "#7A4988", fontWeight: 'bold'}}>+</button>
             </div>
-            <button onClick={() => removeFromCart(item.id)}>Remove from Cart</button>
+            <button style={{ border: 'none', background: 'none', cursor: 'pointer', color: "#7A4988", fontWeight: 'bold'}}onClick={() => removeFromCart(item.id)}> <AiOutlineDelete style={{ fontSize: '20px' }}  />  {/* Use the delete icon */}REMOVE</button>
           </div>
         ))}
       </ul>
