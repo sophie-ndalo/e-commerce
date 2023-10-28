@@ -24,18 +24,24 @@ function Cart() {
     const updatedCart = cart.filter((item) => item.id !== productId);
     setCart(updatedCart);
     saveCartToLocalStorage(updatedCart);
-    // No need to reload the page
+    // Reload the page after removing an item from the cart
+    window.location.reload();
   };
 
   const updateQuantity = (productId, newQuantity) => {
+    // Ensure that the new quantity is at least 1
+    newQuantity = Math.max(1, newQuantity);
+  
     const updatedCart = cart.map((item) =>
       item.id === productId ? { ...item, quantity: newQuantity } : item
     );
+  
     setCart(updatedCart);
     saveCartToLocalStorage(updatedCart);
+    // Reload the page after updating the quantity
+    window.location.reload(); // Reload the page
   };
-
-  return (
+    return (
     <div
       style={{
         width: "60%",

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Cart from './Cart';
 
 const apiUrl = 'https://fakestoreapi.com/products';
 function SingleItem() {
@@ -41,6 +42,7 @@ function SingleItem() {
 
     // Update the cart in local storage
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    window.location.reload();
   };
 
   // Function to increment the quantity of an item in the cart
@@ -52,6 +54,7 @@ function SingleItem() {
       setCart(updatedCart);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
+    window.location.reload();
   };
 
   // Function to decrement the quantity of an item in the cart
@@ -63,10 +66,12 @@ function SingleItem() {
       setCart(updatedCart);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
+    window.location.reload();
   };
 
   return (
     <div> 
+      <Cart/>
       {product ? (
         <div>
           <div>
