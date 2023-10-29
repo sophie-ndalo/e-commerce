@@ -28,7 +28,7 @@ function Items() {
   return (
     <div>
       <div className="product-listings">
-        <Search onSearch={handleSearch} />
+        <Search onSearch={handleSearch} style={{marginTop: ""}}/>
         {/* <div
           style={{
             display: 'flex',
@@ -44,7 +44,7 @@ function Items() {
             justifyContent: "center", // Center horizontally
             gap: "5px", // Reduce the gap value to your preferred spacing
             backgroundColor: "white",
-            width: "60%",
+            width: "70%",
             marginLeft: "auto", // Set left margin to auto
             marginRight: "auto", // Set right margin to auto
             borderRadius: "10px",

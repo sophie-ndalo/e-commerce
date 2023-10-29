@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Search from './Search';
 import { Link } from 'react-router-dom'; // Import Link
 import SingleitemAdmin from './SingleitemAdmin';
+import AddItem from './AddItem';
 
 function Admin() {
   const apiUrl = 'https://fakestoreapi.com/products';
@@ -60,6 +61,7 @@ function Admin() {
   return (
     <div className="product-listings">
       <Search onSearch={handleSearch} />
+      <AddItem/>
       <div style={productListStyle}>
         {filteredProducts.map((product, index) => (
           <Link to={`/productAdmin/${product.id}`} key={product.id}> {/* Use Link to link to SingleItem */}
