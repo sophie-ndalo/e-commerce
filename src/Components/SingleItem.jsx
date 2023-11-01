@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Cart from './Cart';
+import {FaCartPlus} from 'react-icons/fa';
 
 const apiUrl = 'https://fakestoreapi.com/products';
 function SingleItem() {
@@ -70,15 +71,24 @@ function SingleItem() {
   };
 
   return (
-    <div> 
-      <Cart/>
+    <div > 
+       <Cart/> 
       {product ? (
-        <div>
+        <div style={{
+          border: '1px solid #ccc',
+          borderRadius: '5px',
+          padding: '10px',
+          width: '700px',
+          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          cursor: 'pointer',
+          marginTop: '50px',
+          marginLeft: '500px',
+        }}>
           <div>
             <img
               src={product.image}
               alt={product.title}
-              style={{ maxWidth: '100%', height: '200px' }}
+              style={{ maxWidth: '50%', height: '50%', marginLeft: "150px" }}
             />
           </div>
           <div>
@@ -94,7 +104,8 @@ function SingleItem() {
                 <p>item (s) added</p>
                 </div>
             ) : (
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
+              <button onClick={() => addToCart(product)} style={{width: "200px",height: "40px", marginBottom: "20px", borderRadius: "5px",backgroundColor: "#7A4988", fontSize: "18px", color: "white" }}>
+                 <FaCartPlus style={{ marginRight: "30px" }} />Add to Cart</button>
             )}
           </div>
         </div>

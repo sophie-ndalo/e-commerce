@@ -46,7 +46,7 @@ function SingleitemAdmin() {
   };
 
   return (
-    <div lassName="card" style={{
+    <div className="card" style={{
       border: '1px solid #ccc',
       borderRadius: '5px',
       padding: '10px',
@@ -67,7 +67,7 @@ function SingleitemAdmin() {
           <p>{item.description}</p>
           <p>Price: ${item.price}</p>
           <p>Category: {item.category}</p>
-          <Delete />
+          <Delete/>
           {isEditing ? (
             <div style={{ textAlign: "center" }}>
               <form style={{ marginBottom: "10px" }}>
@@ -159,13 +159,7 @@ function SingleitemAdmin() {
           ) : (
             <button
               onClick={handleEditClick}
-              style={{
-                background: "blue",
-                color: "white",
-                padding: "10px 20px",
-                margin: "5px",
-                cursor: "pointer",
-              }}
+              style={{width: "100px",height: "40px", borderRadius: "5px",backgroundColor: "#7A4988", fontSize: "18px", color: "white", marginLeft: "30px" }}
             >
               Edit
             </button>

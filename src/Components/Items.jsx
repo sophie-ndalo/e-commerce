@@ -29,14 +29,6 @@ function Items() {
     <div>
       <div className="product-listings">
         <Search onSearch={handleSearch} style={{marginTop: ""}}/>
-        {/* <div
-          style={{
-            display: 'flex',
-            backgroundColor: "red",
-            width: "60%",
-            marginLeft: "20%"
-          }}
-        > */}
         <div
           style={{
             display: "flex",
@@ -48,6 +40,7 @@ function Items() {
             marginLeft: "auto", // Set left margin to auto
             marginRight: "auto", // Set right margin to auto
             borderRadius: "10px",
+            marginTop: "20px"
           }}
         >
           {filteredProducts.map((product) => (
@@ -88,7 +81,6 @@ function Items() {
             </Link>
           ))}
         </div>
-        {/* </div> */}
       </div>
     </div>
   );

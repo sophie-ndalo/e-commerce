@@ -4,7 +4,7 @@ function Search({ onSearch }) {
   
 
   return (
-    <div style={{ marginBottom: '20px', width: "70%",marginLeft: "15%",backgroundColor: "white",height: "80px"}}>
+    <div style={{ marginTop: '15px', width: "70%",marginLeft: "15%",backgroundColor: "white",height: "80px"}}>
       <input
         type="text"
         placeholder="Search..."

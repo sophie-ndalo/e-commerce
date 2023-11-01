@@ -51,6 +51,7 @@ function Cart() {
       style={{
         display: "flex",
         flexDirection: "row",
+        marginTop: "20px",
       }}
     >
       {/* Cart Items */}
@@ -131,7 +132,7 @@ function Cart() {
         <p style={{ textAlign: "right", marginRight: "400px" }}>CART SUMMARY</p>
         <p style={{ textAlign: "right", marginRight: "450px" }}>Subtotal:</p>
         <p style={{ marginLeft: "450px", marginTop: "-125px" }}> ${totalCartPrice.toFixed(2)}</p>
-        <button style={{ marginLeft: "10px", width: "200px" }}>
+        <button style={{ marginLeft: "180px", width: "200px",height: "40px", marginBottom: "20px", borderRadius: "5px",backgroundColor: "#7A4988", fontSize: "18px", color: "white" }}>
           Checkout (${totalCartPrice.toFixed(2)})
         </button>
       </div>

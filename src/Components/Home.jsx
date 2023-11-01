@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div>
-      <Cart/>
+      {/* <Cart/> */}
       <Items />
     </div>
   );

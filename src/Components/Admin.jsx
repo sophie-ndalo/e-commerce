@@ -62,32 +62,46 @@ function Admin() {
     <div className="product-listings">
       <Search onSearch={handleSearch} />
       <AddItem/>
-      <div style={productListStyle}>
+      <div  style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center", // Center horizontally
+            gap: "5px", // Reduce the gap value to your preferred spacing
+            backgroundColor: "white",
+            width: "70%",
+            marginLeft: "auto", // Set left margin to auto
+            marginRight: "auto", // Set right margin to auto
+            borderRadius: "10px",
+          }}>
         {filteredProducts.map((product, index) => (
           <Link to={`/productAdmin/${product.id}`} key={product.id}> {/* Use Link to link to SingleItem */}
             <div
               className="product-card"
               style={{
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                padding: '10px',
-                width: '250px',
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                cursor: 'pointer',
+                border: "1px solid #ccc",
+                borderRadius: "5px",
+                padding: "10px",
+                width: "250px",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                cursor: "pointer",
+                height: "250px",
+                backgroundColor: "#7A4988",
+                marginTop: "10px",
               }}
               onClick={() => handleProductClick(product)}
             >
               <img src={product.image} alt={product.title} style={{ maxWidth: '100%', height: '100px' }} />
               <h2
                 style={{
-                  fontSize: '1.2rem',
-                  fontWeight: 'bold',
-                  marginBottom: '10px',
+                  fontSize: "1.2rem",
+                  fontWeight: "bold",
+                  marginBottom: "10px",
+                  color: "white",
                 }}
               >
                 {truncateText(product.title, 3)} {/* Truncate the title here */}
               </h2>
-              <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>Price: ${product.price}</p>
+              <p style={{ fontSize: '1.1rem', fontWeight: 'bold',color: "white" }}>Price: ${product.price}</p>
             </div>
           </Link>
         ))}

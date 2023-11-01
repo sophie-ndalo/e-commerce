@@ -20,11 +20,35 @@ function CartIcon() {
     window.location.reload();
   };
 
+  const cartIconStyle = {
+    display: 'flex',
+    alignItems: 'center',
+  };
+
+  const itemCountStyle = {
+    color: 'white',
+    backgroundColor: '#7A4988',
+    borderRadius: '50%',
+    height: '20px',
+    width: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: '5px', // Adjust this margin to move the count inside the icon
+    marginTop: '-30px', // Adjust this margin to align it with the icon
+  };
+  
+
+  const cartText = {
+    marginRight: '300px',
+  };
+
   return (
-    <div>
-      <a href="/cart" style={{ textDecoration: 'none' }} onClick={handleCartIconClick}>
-        <AiOutlineShoppingCart />
-        <span>{itemCount}</span>
+    <div style={cartIconStyle}>
+      <a href="/cart" onClick={handleCartIconClick} style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
+        <AiOutlineShoppingCart style={{ marginRight: '5px', height: '25px', width: '25px' }} />
+        <span style={itemCountStyle}>{itemCount}</span>
+        <p style={cartText}>Cart</p>
       </a>
     </div>
   );
