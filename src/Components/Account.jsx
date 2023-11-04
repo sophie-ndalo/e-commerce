@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp, FaUser, FaRegHeart, FaCartArrowDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Account() {
   const [showList, setShowList] = useState(false);
@@ -9,19 +10,10 @@ function Account() {
   };
 
   const services = [
-    "SignIn",
-    <span>
-      <FaUser style={{ marginRight: "8px" }} />
-      My Account
-    </span>,
-    <span>
-      <FaCartArrowDown style={{ marginRight: "8px" }} />
-      Orders
-    </span>,
-    <span>
-      <FaRegHeart style={{ marginRight: "8px" }} />
-      Saved Items
-    </span>,
+    { label: "SIGN IN", path: "/login" },
+    { label: "My Account", path: "/myaccount", icon: <FaUser /> },
+    { label: "Orders", path: "/orders", icon: <FaCartArrowDown /> },
+    { label: "Saved Items", path: "/saveditems", icon: <FaRegHeart /> },
   ];
 
   const buttonStyle = {
@@ -36,10 +28,9 @@ function Account() {
   };
 
   const listStyle = {
-    position: "absolute", // Position the list absolutely
+    position: "absolute",
     top: "100%",
-    left: 0, // Align with the left side of the button
-    backgroundColor: "#808080",
+    left: 0,
     padding: "10px",
     borderRadius: "4px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
@@ -47,12 +38,13 @@ function Account() {
     zIndex: 1,
     listStyle: "none",
     width: "220px",
+    backgroundColor: "white",
   };
 
   return (
-    <div style={{ position: "relative" ,marginTop: "5px", marginRight: "30px"}}>
+    <div style={{ position: "relative", marginTop: "5px", marginRight: "30px" }}>
       <button style={buttonStyle} onClick={toggleList}>
-        <FaUser style={iconStyle} />
+        <FaUser style={iconStyle}/>
         Account
         {showList ? <FaAngleUp style={iconStyle} /> : <FaAngleDown style={iconStyle} />}
       </button>
@@ -60,24 +52,20 @@ function Account() {
         <ul style={listStyle}>
           {services.map((service, index) => (
             <li key={index}>
-              {typeof service === "string" ? (
-                service === "SignIn" ? (
-                  <button
-                    style={{
-                      backgroundColor: "white",
-                      border: "none",
-                      cursor: "pointer",
-                      borderRadius: "5px",
-                    }}
-                  >
-                    {service}
-                  </button>
-                ) : (
-                  service
-                )
-              ) : (
-                service
-              )}
+              <Link to={service.path}>
+                <button
+                  style={{
+                    border: "none",
+                    cursor: "pointer",
+                    borderRadius: "5px",
+                    backgroundColor: service.label === "SIGN IN" ? "red" : "transparent", // Set background color to red only for "SIGN IN"
+                    height: "30px",
+                    width: "70px",
+                  }}
+                >
+                  {service.icon} {service.label}
+                </button>
+              </Link>
             </li>
           ))}
         </ul>

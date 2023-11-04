@@ -7,6 +7,8 @@ import Admin from './Components/Admin';
 import SingleItem from './Components/SingleItem';
 import SingleitemAdmin from './Components/SingleitemAdmin';
 import Cart from './Components/Cart';
+import Login from './Components/LogIn';
+import SignUp from './Components/SignUp';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/Admin" element={<Admin />} />
         <Route path="/product/:id" element={<SingleItem />} />
         <Route path="/productAdmin/:id" element={<SingleitemAdmin />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         {/* Add more routes here */}
       </Routes>
     </div>
