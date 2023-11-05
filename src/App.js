@@ -9,6 +9,7 @@ import SingleitemAdmin from './Components/SingleitemAdmin';
 import Cart from './Components/Cart';
 import Login from './Components/LogIn';
 import SignUp from './Components/SignUp';
+import SavedItems from './Components/SavedItems';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/productAdmin/:id" element={<SingleitemAdmin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/saveditems" element={<SavedItems />} />
         {/* Add more routes here */}
       </Routes>
     </div>

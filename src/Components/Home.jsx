@@ -9,7 +9,7 @@ function Home() {
   return (
     <div>
       {/* <Cart/> */}
-      <Login/>
+      {/* <Login/> */}
       <Items />
     </div>
   );
