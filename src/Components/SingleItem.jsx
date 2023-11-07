@@ -48,6 +48,7 @@ function SingleItem() {
 
     // Update the cart in local storage
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    window.location.reload();
   };
 
   // Function to add an item to savedItems and toggle its heart icon

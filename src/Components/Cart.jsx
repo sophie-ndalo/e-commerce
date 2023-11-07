@@ -109,7 +109,7 @@ function Cart() {
                   {" "}
                   <AiOutlineDelete style={{ fontSize: "20px" }} /> REMOVE
                 </button>
-                <hr style={{ margin: "10px 0" }} /> {/* Add a horizontal line between items */}
+                <hr style={{ margin: "10px 0" }} /> Add a horizontal line between items
               </div>
             ))}
           </ul>
