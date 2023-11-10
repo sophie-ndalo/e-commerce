@@ -7,12 +7,17 @@ import Admin from './Components/Admin';
 import SingleItem from './Components/SingleItem';
 import SingleitemAdmin from './Components/SingleitemAdmin';
 import Cart from './Components/Cart';
-import Login from './Components/LogIn';
+import Login from './Components/auth/LogIn';
 import SignUp from './Components/SignUp';
-
+import UserInformationForm from './Components/UserInformationForm';
+import { AuthProvider } from './AuthContext';
+import LogOut from './Components/LogOut';
+import AuthDetails from './Components/AuthDetails';
+import SavedItems from './Components/SavedItems';
 
 function App() {
   return (
+    <AuthProvider>
     <div className="App" style={{ backgroundColor: '#FAF9F6' }}>
       <p>sell on jumia clone</p>
       <Navbar />
@@ -25,12 +30,16 @@ function App() {
         <Route path="/productAdmin/:id" element={<SingleitemAdmin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/saveditems" element={<Login />} />
+        <Route path="/saveditems" element={<SavedItems />} />
         <Route path="/orders" element={<Login />} />
         <Route path="/myaccount" element={<Login />} />
+        <Route path="/userinformationform" element={<UserInformationForm />} />
+        {/* <Route path="/authdetails" element={<AuthDetails />} /> */}
+
         {/* Add more routes here */}
       </Routes>
     </div>
+    </AuthProvider>
   );
 }
 
