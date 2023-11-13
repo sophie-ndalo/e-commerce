@@ -35,18 +35,20 @@ function CartIcon() {
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: '5px', // Adjust this margin to move the count inside the icon
-    marginTop: '-30px', // Adjust this margin to align it with the icon
+    marginTop: '-20px', // Adjust this margin to align it with the icon
   };
   
 
   const cartText = {
     marginRight: '300px',
+    marginTop: "20px",
+    fontFamily: "'Roboto Slab', serif", 
   };
 
   return (
     <div style={cartIconStyle}>
       <a href="/cart" onClick={handleCartIconClick} style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
-        <AiOutlineShoppingCart style={{ marginRight: '5px', height: '25px', width: '25px' }} />
+        <AiOutlineShoppingCart style={{ marginRight: '5px', height: '25px', width: '25px', marginTop:"20px" }} />
         <span style={itemCountStyle}>{itemCount}</span>
         <p style={cartText}>Cart</p>
       </a>

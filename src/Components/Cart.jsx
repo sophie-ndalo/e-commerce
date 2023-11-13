@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../AuthContext'; // Update the path accordingly
 
 function Cart() {
   const [cart, setCart] = useState([]);
+  const auth = useAuth(); // Assuming you have a useAuth hook to check authentication status
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -43,15 +47,29 @@ function Cart() {
   const totalCartPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
-    
   );
+
+  
+  const handleCheckout = () => {
+    console.log("auth.user:", auth.currentUser); // Log the value of auth.user for debugging
+  
+    // Check if there is a user signed in
+    const redirectTo = auth.currentUser ? "/userinformationform" : "/login";
+    console.log("Redirecting to:", redirectTo); // Log the determined redirect route
+  
+    // Navigate to the determined route
+    navigate(redirectTo);
+  };
+  
+  
+
 
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
-        marginTop: "20px",
+        marginTop: "100px",
       }}
     >
       {/* Cart Items */}
@@ -84,14 +102,14 @@ function Cart() {
                   Quantity:{" "}
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                    style={{ backgroundColor: "#7A4988", fontWeight: "bold" }}
+                    style={{ backgroundColor: "#7A4988", fontWeight: "bold", width: "20px" }}
                   >
                     -
                   </button>
                   {item.quantity}
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                    style={{ backgroundColor: "#7A4988", fontWeight: "bold" }}
+                    style={{ backgroundColor: "#7A4988", fontWeight: "bold", width: "20px"}}
                   >
                     +
                   </button>
@@ -109,7 +127,8 @@ function Cart() {
                   {" "}
                   <AiOutlineDelete style={{ fontSize: "20px" }} /> REMOVE
                 </button>
-                <hr style={{ margin: "10px 0" }} /> Add a horizontal line between items
+                {/* Add a horizontal line between items */}
+                <hr style={{ margin: "10px 0" }} />
               </div>
             ))}
           </ul>
@@ -132,7 +151,20 @@ function Cart() {
         <p style={{ textAlign: "right", marginRight: "400px" }}>CART SUMMARY</p>
         <p style={{ textAlign: "right", marginRight: "450px" }}>Subtotal:</p>
         <p style={{ marginLeft: "450px", marginTop: "-125px" }}> ${totalCartPrice.toFixed(2)}</p>
-        <button style={{ marginLeft: "180px", width: "200px",height: "40px", marginBottom: "20px", borderRadius: "5px",backgroundColor: "#7A4988", fontSize: "18px", color: "white" }}>
+        <button
+          onClick={handleCheckout}
+          style={{
+            marginLeft: "180px",
+            width: "200px",
+            height: "40px",
+            marginBottom: "20px",
+            borderRadius: "5px",
+            backgroundColor: "#7A4988",
+            fontSize: "18px",
+            color: "white",
+            fontFamily: "'Roboto Slab', serif",
+          }}
+        >
           Checkout (${totalCartPrice.toFixed(2)})
         </button>
       </div>

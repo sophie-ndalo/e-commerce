@@ -50,18 +50,10 @@ function Admin() {
       )
     : products;
 
-  const productListStyle = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: '10px',
-    marginTop: '100px',
-  };
-
   return (
     <div className="product-listings">
-      <Search onSearch={handleSearch} />
       <AddItem/>
+      <Search onSearch={handleSearch} />
       <div  style={{
             display: "flex",
             flexWrap: "wrap",
@@ -87,6 +79,7 @@ function Admin() {
                 height: "250px",
                 backgroundColor: "#7A4988",
                 marginTop: "10px",
+                marginBottom: "10px",
               }}
               onClick={() => handleProductClick(product)}
             >

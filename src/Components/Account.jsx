@@ -3,9 +3,9 @@ import {
   FaAngleDown,
   FaAngleUp,
   FaUser,
-  FaRegHeart,
   FaCartArrowDown,
   FaHeart,
+  FaShoppingBag,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
@@ -65,6 +65,7 @@ function Account() {
     alignItems: "center",
     padding: "8px 16px",
     borderRadius: "5px",
+    fontFamily: "'Roboto Slab', serif", 
   };
 
   const iconStyle = {
@@ -78,12 +79,12 @@ function Account() {
     padding: "10px",
     borderRadius: "4px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    color: "black",
     zIndex: 1,
     listStyle: "none",
     width: "220px",
     backgroundColor: "white",
     height: "180px",
+    
   };
 
   return (
@@ -114,9 +115,8 @@ function Account() {
                 }}
                 onClick={closeDropdown}
               >
-                {/* {userDisplayName && `Signed In as ${authUser.email}`} */}
                 {userDisplayName && (
-                  <Link to="/saveditems"> {/* Use Link for navigation */}
+                  <Link to="/saveditems">
                     <li
                       style={{
                         marginTop: "20px",
@@ -124,10 +124,30 @@ function Account() {
                         height: "30px",
                         borderRadius: "5px",
                         borderColor: "transparent",
+                        color: "black",
                       }}
                     >
-                       <FaHeart style={{marginRight: "15px", marginTop: "5px"}}/>
+                      <FaHeart style={{ marginRight: "15px", marginTop: "5px" }} />
                       Saved Items
+                    </li>
+                  </Link>
+                )}
+                {userDisplayName && (
+                  <Link to="/orders">
+                    <li
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "20px",
+                        width: "110px",
+                        height: "30px",
+                        borderRadius: "5px",
+                        borderColor: "transparent",
+                        color:"black",
+                      }}
+                    >
+                      <FaShoppingBag style={{ marginRight: "20px", marginTop: "5px" }} />
+                      Orders
                     </li>
                   </Link>
                 )}
@@ -136,10 +156,12 @@ function Account() {
                     onClick={userSignOut}
                     style={{
                       marginTop: "20px",
-                      width: "100px",
+                      width: "200px",
                       height: "30px",
                       borderRadius: "5px",
                       borderColor: "transparent",
+                      color: "#7A4988", 
+                      fontSize: "16px",
                     }}
                   >
                     Sign Out

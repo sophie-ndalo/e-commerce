@@ -2,6 +2,16 @@ import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import { Link } from "react-router-dom";
 
+// Utility function to truncate a string to a specified number of words
+const truncateString = (str, numWords) => {
+  const words = str.split(' ');
+  if (words.length <= numWords) {
+    return str;
+  }
+  const truncated = words.slice(0, numWords).join(' ');
+  return `${truncated}...`;
+};
+
 function Items() {
   const apiUrl = "https://fakestoreapi.com/products";
   const [products, setProducts] = useState([]);
@@ -28,7 +38,7 @@ function Items() {
   return (
     <div>
       <div className="product-listings">
-        <Search onSearch={handleSearch} style={{marginTop: ""}}/>
+        <Search onSearch={handleSearch}  />
         <div
           style={{
             display: "flex",
@@ -37,6 +47,7 @@ function Items() {
             gap: "5px", // Reduce the gap value to your preferred spacing
             backgroundColor: "white",
             width: "70%",
+            height: "100%",
             marginLeft: "auto", // Set left margin to auto
             marginRight: "auto", // Set right margin to auto
             borderRadius: "10px",
@@ -57,6 +68,7 @@ function Items() {
                   height: "250px",
                   backgroundColor: "#7A4988",
                   marginTop: "10px",
+                  marginBottom: "10px",
                 }}
               >
                 <img
@@ -70,11 +82,12 @@ function Items() {
                     fontWeight: "bold",
                     marginBottom: "10px",
                     color: "white",
+                    fontFamily: "'Roboto Slab', serif", 
                   }}
                 >
-                  {product.title}
+                  {truncateString(product.title, 5)}
                 </h2>
-                <p style={{ fontSize: "1.1rem", fontWeight: "bold", color: "white", }}>
+                <p style={{ fontSize: "1.1rem", fontWeight: "bold", color: "white",fontFamily: "'Roboto Slab', serif",  }}>
                   Price: ${product.price}
                 </p>
               </div>

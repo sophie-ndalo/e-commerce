@@ -20,7 +20,7 @@ function Delete({ itemId, onDelete }) {
   };
 
   return (
-    <button onClick={handleDelete} style={{width: "100px",height: "40px", marginBottom: "20px", borderRadius: "5px",backgroundColor: "red", fontSize: "18px", color: "white" }}>Delete</button>
+    <button onClick={handleDelete} style={{width: "100px",height: "40px", marginBottom: "20px", borderRadius: "5px",backgroundColor: "red", fontSize: "18px", color: "white",fontFamily: "'Roboto Slab', serif" }}>Delete</button>
   );
 }
 

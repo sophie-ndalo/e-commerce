@@ -53,7 +53,7 @@ function SingleitemAdmin() {
       width: '700px',
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       cursor: 'pointer',
-      marginTop: '50px',
+      marginTop: '150px',
       marginLeft: '500px',
     }}>
       {item && (
@@ -80,11 +80,11 @@ function SingleitemAdmin() {
                   onChange={(e) =>
                     setEditedData({ ...editedData, title: e.target.value })
                   }
-                  style={{ width: "100%", padding: "5px" }}
+                  style={{ width: "100%", padding: "5px" ,borderRadius: "5px"}}
                 />
               </form>
               <form style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", fontSize: "16px" }}>
+                <label style={{ display: "block", fontSize: "16px", }}>
                   Description:
                 </label>
                 <input
@@ -96,11 +96,11 @@ function SingleitemAdmin() {
                       description: e.target.value,
                     })
                   }
-                  style={{ width: "100%", padding: "5px" }}
+                  style={{ width: "100%", padding: "5px",borderRadius: "5px" }}
                 />
               </form>
               <form style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", fontSize: "16px" }}>
+                <label style={{ display: "block", fontSize: "16px", }}>
                   Price:
                 </label>
                 <input
@@ -112,11 +112,11 @@ function SingleitemAdmin() {
                       price: parseFloat(e.target.value),
                     })
                   }
-                  style={{ width: "100%", padding: "5px" }}
+                  style={{ width: "100%", padding: "5px", borderRadius: "5px" }}
                 />
               </form>
               <form style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", fontSize: "16px" }}>
+                <label style={{ display: "block", fontSize: "16px", }}>
                   Category:
                 </label>
                 <input
@@ -128,7 +128,7 @@ function SingleitemAdmin() {
                       category: (e.target.value),
                     })
                   }
-                  style={{ width: "100%", padding: "5px" }}
+                  style={{ width: "100%", padding: "5px" ,borderRadius: "5px"}}
                 />
               </form>
               <button
@@ -139,6 +139,8 @@ function SingleitemAdmin() {
                   padding: "10px 20px",
                   margin: "5px",
                   cursor: "pointer",
+                  fontFamily: "'Roboto Slab', serif",
+                  borderRadius: "5px",
                 }}
               >
                 Save
@@ -151,6 +153,8 @@ function SingleitemAdmin() {
                   padding: "10px 20px",
                   margin: "5px",
                   cursor: "pointer",
+                  fontFamily: "'Roboto Slab', serif", 
+                  borderRadius: "5px",
                 }}
               >
                 Close
@@ -159,7 +163,8 @@ function SingleitemAdmin() {
           ) : (
             <button
               onClick={handleEditClick}
-              style={{width: "100px",height: "40px", borderRadius: "5px",backgroundColor: "#7A4988", fontSize: "18px", color: "white", marginLeft: "30px" }}
+              style={{width: "100px",height: "40px", borderRadius: "5px",backgroundColor: "#7A4988", fontSize: "18px", color: "white", marginLeft: "30px", fontFamily: "'Roboto Slab', serif"
+             }}
             >
               Edit
             </button>

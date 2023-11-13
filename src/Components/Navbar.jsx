@@ -16,50 +16,54 @@ function Navbar({ cart = [], updateCart, selectedProduct }) {
 
   return (
     <nav
+    style={{
+      backgroundColor: "white",
+      width: "100%",
+      height: "100px",
+      position: "fixed",  // Set the position to fixed
+      top: 0,             // Stick it at the top
+      zIndex: 1000,       // Set a high z-index to ensure it appears above other elements
+    }}
+  >
+    <div
       style={{
-        backgroundColor: "white",
-        width: "100%",
-        height: "120px",
-        marginTop: "20px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ marginTop: "30px" }}>
-          <h1 style={{ marginLeft: "380px" }}>
-            JUMIA CLONE
-            <AiOutlineStar
-              style={{
-                marginLeft: "95%",
-                marginBottom: "-4px",
-                color: "white",
-                backgroundColor: "#7A4988",
-                borderRadius: "50%",
-                height: "20px",
-                width: "20px",
-                display: "flex",
-                marginRight: "160px",
-                marginTop: "-25px",
-              }}
-            />
-          </h1>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ marginTop: "30px" }}>
+        <h1 style={{ marginLeft: "380px", fontStyle:"initial" }}>
+          JUMIA CLONE
+          <AiOutlineStar
+            style={{
+              marginLeft: "95%",
+              marginBottom: "-4px",
+              color: "white",
+              backgroundColor: "#7A4988",
+              borderRadius: "50%",
+              height: "20px",
+              width: "20px",
+              display: "flex",
+              marginRight: "160px",
+              marginTop: "-25px",
+              border: "1px solid white", // Set the border color to white
+              fill: "white", // Set the fill color of the star (inside)
+            }}
+          />
+        </h1>
+      </div>
+      <div style={{ display: "flex", alignItems: "center" }}>
           <div
             style={{
               position: "relative",
               display: "inline-block",
-              marginRight: "20px",
+              marginRight: "20px", marginTop: "40px",
             }}
           >
             <span
               onClick={toggleCategories}
-              style={{ cursor: "pointer", color: "black" }}
+              style={{ cursor: "pointer", color: "black",fontFamily: "'Roboto Slab', serif", }}
             >
               Categories <FaAngleDown />
             </span>
@@ -77,13 +81,13 @@ function Navbar({ cart = [], updateCart, selectedProduct }) {
               >
                 <Link
                   to="/electronics"
-                  style={{ color: "black", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none",fontFamily: "'Roboto Slab', serif",   }}
                 >
                   Electronics
                 </Link>
                 <Link
                   to="/clothing"
-                  style={{ color: "black", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none",fontFamily: "'Roboto Slab', serif",   }}
                 >
                   Clothing
                 </Link>
@@ -96,7 +100,9 @@ function Navbar({ cart = [], updateCart, selectedProduct }) {
             style={{
               display: "flex",
               alignItems: "center",
-              marginLeft: "20px",
+              marginLeft: "20px", 
+              marginTop: "40px",
+              fontFamily: "'Roboto Slab', serif", 
             }}
           >
             <Link
@@ -105,6 +111,7 @@ function Navbar({ cart = [], updateCart, selectedProduct }) {
                 color: "black",
                 textDecoration: "none",
                 marginRight: "10px",
+               
               }}
             >
               Admin
@@ -115,11 +122,12 @@ function Navbar({ cart = [], updateCart, selectedProduct }) {
                 textDecoration: "none",
                 marginRight: "10px",
                 color: "black",
+               
               }}
             >
               Home
             </Link>
-            <Account style={{ marginRight: "100px" }} />
+            <Account style={{ marginTop: "50px" }} />
             <CartIcon itemCount={cartItemCount} style={{ marginLeft: "5px" }} />
           </div>
         </div>

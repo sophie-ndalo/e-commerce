@@ -36,7 +36,7 @@ function AddItem() {
       });
   };
   return (
-    <div style={{ marginLeft: "40%"}}>
+    <div style={{ marginLeft: "35%", marginTop:"100px"}}>
       <h2>Add Item</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -46,7 +46,7 @@ function AddItem() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            style={{ marginLeft: "60px", width: "30%", height: "30px" }}
+            style={{ marginLeft: "55px", width: "40%", height: "40px", borderRadius: "5px" }}
           />
         </div>
         <div>
@@ -56,7 +56,7 @@ function AddItem() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
-            style={{ marginLeft: "10px", width: "30%", height: "30px", marginTop: "20px" }}
+            style={{ marginLeft: "10px", width: "40%", height: "40px", marginTop: "20px", borderRadius: "5px" }}
           />
         </div>
         <div>
@@ -66,7 +66,7 @@ function AddItem() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
-            style={{ marginLeft: "55px", width: "30%", height: "30px", marginTop: "20px"}}
+            style={{ marginLeft: "50px", width: "40%", height: "40px", marginTop: "20px", borderRadius: "5px"}}
           />
         </div>
         <div>
@@ -76,10 +76,10 @@ function AddItem() {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
-            style={{ marginLeft: "25px", width: "30%", height: "30px", marginTop: "20px"}}
+            style={{ marginLeft: "25px", width: "40%", height: "40px", marginTop: "20px", borderRadius: "5px"}}
           />
         </div>
-        <button type="submit" style={{ marginLeft: "240px", marginTop: "20px", height: "30px"}}>Submit</button>
+        <button type="submit" style={{ marginLeft: "250px", marginTop: "20px", height: "30px", width: "60px", backgroundColor:"#7A4988", color: "white", borderRadius: "5px"}}>Submit</button>
       </form>
     </div>
   );

@@ -134,12 +134,12 @@ function SingleItem() {
             <p>Category: {product.category}</p>
             {cart.find((cartItem) => cartItem.id === product.id) ? (
               <div>
-                <button onClick={() => decrementItem(product.id)} style={{ backgroundColor: '#7A4988' }}>
-                  <FaMinus />
+                <button onClick={() => decrementItem(product.id)} style={{ backgroundColor: '#7A4988',fontWeight: "bold", width: "20px" }}>
+                  -
                 </button>
                 <span>{cart.find((cartItem) => cartItem.id === product.id).quantity}</span>
-                <button onClick={() => incrementItem(product.id)} style={{ backgroundColor: '#7A4988' }}>
-                  <FaPlus />
+                <button onClick={() => incrementItem(product.id)} style={{ backgroundColor: '#7A4988',fontWeight: "bold", width: "20px" }}>
+                  +
                 </button>
                 <p>item(s) added</p>
               </div>

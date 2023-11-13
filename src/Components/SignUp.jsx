@@ -1,24 +1,31 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 
 const Signup = () => {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null); // State to store error message
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleContinue = async () => {
-    if (email && password) {
+  const handleSignup = async () => {
+    if (email && confirmEmail && password && confirmPassword) {
+      if (email !== confirmEmail) {
+        setErrorMessage("Emails do not match. Please confirm your email.");
+        return;
+      }
+      if (password !== confirmPassword) {
+        setErrorMessage("Passwords do not match. Please confirm your password.");
+        return;
+      }
+
       try {
-        // Attempt to create a new user with the provided email and password
         await createUserWithEmailAndPassword(auth, email, password);
-        // If successful, navigate to the UserInformationForm
-        navigate("/userinformationform");
+        // You can add any additional logic here after successful signup
+        // For example, redirect to another page or display a success message
       } catch (error) {
-        // Handle the error and display a relevant message
         if (error.code === "auth/email-already-in-use") {
           setErrorMessage("Email address is already registered. Please sign in.");
         } else {
@@ -26,81 +33,68 @@ const Signup = () => {
         }
       }
     } else {
-      // Display an error message if email or password is not provided
-      setErrorMessage("Please provide both email and password.");
+      setErrorMessage("Please provide all required information.");
     }
   };
-//   const handleUserInformationSubmit = (user) => {
-//     // Handle the submission of user details here, e.g., send data to the server
-//     // After successful submission, you can navigate to the login or another page
-//     // Example:
-//     // sendUserDataToServer(user)
-//     // navigate("/login");
-//   };
-  
-  const handleUserInformationSubmit = () => {
-    // Handle user information submission here
-    navigate("/login");
-  };
-
 
   return (
-    <div style={{ height: "900px" }}>
-      <div
-        style={{
-          backgroundColor: "white",
-          height: "400px",
-          width: "600px",
-          marginLeft: "600px",
-          marginTop: "150px",
-        }}
-      >
-        <main>
-          <section>
-            <div>
-              <div>
-                <p> FocusApp </p>
-                <form style={{ marginTop: "50px" }}>
-                  <div style={{ marginLeft: "50px" }}>
-                    <label htmlFor="email-address">Email address : </label>
-                    <input
-                      type="email"
-                      label="Email address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      placeholder="Email address"
-                      style={{ height: "30px", width: "400px", borderRadius: "5px", borderColor: "#7A4988" }}
-                    />
-                  </div>
+    <div style={{ position: 'fixed', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: '1000' }}>
+      <div style={{ height: '400px', width: '600px', backgroundColor: '#F8F6F0', borderRadius: '10px', padding: '20px' }}>
+        <form style={{ marginTop: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px', marginLeft: '50px' }}>
+            <label htmlFor="email" style={{ marginBottom: '5px' }}>Email : </label>
+            <input
+              type="email"
+              label="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Enter your email"
+              style={{ height: '30px', width: '400px', borderRadius: '5px', borderColor: '#7A4988' }}
+            />
+          </div>
 
-                  <div style={{ marginLeft: "80px" }}>
-                    <label htmlFor="password">Password : </label>
-                    <input
-                      type="password"
-                      label="Create password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      placeholder="Password"
-                      style={{ height: "30px", width: "400px", marginTop: "40px", borderRadius: "5px", borderColor: "#7A4988" }}
-                    />
-                  </div>
-                </form>
-                <div style={{ marginLeft: "250px", marginTop: '20px' }}>
-                  <button onClick={handleContinue} style={{ height: "30px", width: '100px', borderRadius: "5px", backgroundColor: "#7A4988", color: "white" }}>Continue</button>
-                </div>
-                {errorMessage && (
-                  <p style={{ color: "red", textAlign: "center" }}>{errorMessage}</p>
-                )}
-                <p style={{ marginLeft: "100px" }}>
-                  Already have an account?{" "}
-                  <NavLink to="/login" onSubmit={handleUserInformationSubmit}>Sign in</NavLink>
-                </p>
-              </div>
-            </div>
-          </section>
-        </main>
+          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px', marginLeft: '50px' }}>
+            <label htmlFor="password" style={{ marginBottom: '5px' }}>Password : </label>
+            <input
+              type="password"
+              label="Create password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Enter your password"
+              style={{ height: '30px', width: '400px', borderRadius: '5px', borderColor: '#7A4988' }}
+            />
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px', marginLeft: '50px' }}>
+            <label htmlFor="confirm-password" style={{ marginBottom: '5px' }}>Confirm Password : </label>
+            <input
+              type="password"
+              label="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              placeholder="Confirm your password"
+              style={{ height: '30px', width: '400px', borderRadius: '5px', borderColor: '#7A4988' }}
+            />
+          </div>
+
+          <div style={{ marginLeft: '250px', marginTop: '20px' }}>
+            <button style={{ height: '30px', width: '60px', borderRadius: '5px', backgroundColor: '#7A4988', color: 'white' }} onClick={handleSignup}>
+              Signup
+            </button>
+          </div>
+
+          {errorMessage && <p style={{ color: 'red', textAlign: 'center' }}>{errorMessage}</p>}
+        </form>
+
+        <p style={{ marginLeft: '200px', marginTop: '10px' }} className="text-sm text-white text-center">
+          Already have an account?{' '}
+          <NavLink to="/login">
+            Sign in
+          </NavLink>
+        </p>
       </div>
     </div>
   );
