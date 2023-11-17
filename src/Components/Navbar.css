@@ -1,0 +1,176 @@
+
+/* Navbar.css */
+
+/* Navbar */
+.navbar {
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Logo */
+  .logo h1 {
+    margin-Right: 400px;
+    font-style: initial;
+    display: flex;
+    align-items: center;
+    color: #000;
+    font-size: 1.5rem;
+  }
+  
+  .logo h1 svg {
+    margin-left: 5px;
+    color: white;
+    background-color: #7a4988;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    padding: 2px;
+  }
+  
+  /* Sidebar toggle button */
+  .sidebar-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 30px;
+  }
+  
+  /* Navbar content */
+  .navbar-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Categories */
+  .categories {
+    position: relative;
+    margin-top: 12px;
+  }
+  
+  .categories span {
+    cursor: pointer;
+    color: black;
+    font-family: 'Roboto Slab', serif;
+  }
+  
+  .category-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+  }
+  
+  .category-dropdown a {
+    color: black;
+    text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+
+  }
+  
+  .categories:hover .category-dropdown {
+    display: flex;
+  }
+  
+  /* Horizontal list */
+  .horizontal-list {
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+    gap: 10px;
+  }
+  
+  .horizontal-list a {
+    color: black;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    width: 250px;
+    background-color: #f5f5f5;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+
+  /* ... (previous styles) */
+
+/* Media queries for responsiveness */
+@media screen and (min-width: 1024px) {
+    /* Hide sidebar on tablet and laptop screens */
+    .sidebar {
+      display: none;
+   }
+    .sidebar-toggle {display: none;}
+  
+    /* Adjust navbar content alignment when sidebar is hidden */
+    .navbar-content {
+      justify-content: flex-end;
+      margin-top: 0;
+    }
+  
+    /* Adjustments for smaller screens if needed */
+    /* Example: Reduce left margin of the horizontal list */
+    .horizontal-list {
+      margin-right: 100px;
+    }
+    
+    .menu {
+        margin-left: -220px;
+        background-color: red;
+    }
+    .cart {
+        margin-right:20px;
+        background-color: red;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    /* Adjustments for smaller screens if needed */
+    /* Example: Make the logo font size smaller */
+    .logo h1 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    /* Adjustments for mobile screens if needed */
+    /* Example: Hide the logo text and only show the star icon */
+    .logo h1 {
+      font-size: 1.5rem;
+    }
+  
+    .logo h1 span {
+      display: none;
+    }
+  }
+  
+  
+
+
+  

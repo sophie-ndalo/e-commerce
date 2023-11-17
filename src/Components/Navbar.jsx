@@ -3,133 +3,74 @@ import { Link } from "react-router-dom";
 import Account from "./Account";
 import { AiOutlineStar } from "react-icons/ai";
 import CartIcon from "./CartIcon";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaBars, FaTimes } from "react-icons/fa"; // Import FaBars for hamburger icon
+import "./Navbar.css"; // Import the Navbar.css file
 
 function Navbar({ cart = [], updateCart, selectedProduct }) {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleCategories = () => {
     setCategoriesOpen(!categoriesOpen);
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
   const cartItemCount = cart.reduce((count, item) => count + item.quantity, 0);
+  
 
   return (
-    <nav
-    style={{
-      backgroundColor: "white",
-      width: "100%",
-      height: "100px",
-      position: "fixed",  // Set the position to fixed
-      top: 0,             // Stick it at the top
-      zIndex: 1000,       // Set a high z-index to ensure it appears above other elements
-    }}
-  >
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ marginTop: "30px" }}>
-        <h1 style={{ marginLeft: "380px", fontStyle:"initial" }}>
-          JUMIA CLONE
-          <AiOutlineStar
-            style={{
-              marginLeft: "95%",
-              marginBottom: "-4px",
-              color: "white",
-              backgroundColor: "#7A4988",
-              borderRadius: "50%",
-              height: "20px",
-              width: "20px",
-              display: "flex",
-              marginRight: "160px",
-              marginTop: "-25px",
-              border: "1px solid white", // Set the border color to white
-              fill: "white", // Set the fill color of the star (inside)
-            }}
-          />
-        </h1>
-      </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-          <div
-            style={{
-              position: "relative",
-              display: "inline-block",
-              marginRight: "20px", marginTop: "40px",
-            }}
-          >
-            <span
-              onClick={toggleCategories}
-              style={{ cursor: "pointer", color: "black",fontFamily: "'Roboto Slab', serif", }}
-            >
-              Categories <FaAngleDown />
+    <nav className="navbar">
+      <button className="sidebar-toggle" onClick={toggleSidebar}>
+        {sidebarOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
+      <div className="navbar-content">
+        <div className="logo">
+          <h1>
+            JUMIA CLONE
+            <AiOutlineStar />
+          </h1>
+        </div>
+
+        <div className="menu">
+          <div className="horizontal-list">
+            <span className="categories" onClick={toggleCategories}>
+              Categories {categoriesOpen ? <FaAngleUp /> : <FaAngleDown />}
+              {categoriesOpen && (
+                <div className="category-dropdown">
+                  <Link to="/electronics">Electronics</Link>
+                  <Link to="/clothing">Clothing</Link>
+                  {/* Add more category links */}
+                </div>
+              )}
             </span>
-            {categoriesOpen && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  backgroundColor: "white",
-                  padding: "10px",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Link
-                  to="/electronics"
-                  style={{ color: "black", textDecoration: "none",fontFamily: "'Roboto Slab', serif",   }}
-                >
-                  Electronics
-                </Link>
-                <Link
-                  to="/clothing"
-                  style={{ color: "black", textDecoration: "none",fontFamily: "'Roboto Slab', serif",   }}
-                >
-                  Clothing
-                </Link>
-                {/* Add more category links as needed */}
-              </div>
-            )}
+            <Link to="/admin">Admin</Link>
+            <Link to="/">Home</Link>
+            <Account />
+            <CartIcon  className="cart" itemCount={cartItemCount} />
           </div>
-          <div
-            className="horizontal-list"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginLeft: "20px", 
-              marginTop: "40px",
-              fontFamily: "'Roboto Slab', serif", 
-            }}
-          >
-            <Link
-              to="/admin"
-              style={{
-                color: "black",
-                textDecoration: "none",
-                marginRight: "10px",
-               
-              }}
-            >
-              Admin
-            </Link>
-            <Link
-              to="/"
-              style={{
-                textDecoration: "none",
-                marginRight: "10px",
-                color: "black",
-               
-              }}
-            >
-              Home
-            </Link>
-            <Account style={{ marginTop: "50px" }} />
-            <CartIcon itemCount={cartItemCount} style={{ marginLeft: "5px" }} />
-          </div>
+        </div>
+      </div>
+
+      <div className={sidebarOpen ? "sidebar open" : "sidebar"}>
+        <button className="sidebar-close" onClick={closeSidebar}>
+          <FaTimes />
+        </button>
+        <div className="sidebar-content">
+          <h2>Sidebar</h2>
+          <Link to="/admin">Admin</Link>
+          <Link to="/">Home</Link>
+          <Link to="/mobile-L">Mobile-L</Link>
+          <Link to="/mobile-M">Mobile-M</Link>
+          <Link to="/mobile-S">Mobile-S</Link>
+          {/* Add more sidebar links */}
         </div>
       </div>
     </nav>

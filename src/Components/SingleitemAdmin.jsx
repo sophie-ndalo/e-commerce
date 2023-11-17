@@ -53,11 +53,11 @@ function SingleitemAdmin() {
       width: '700px',
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
       cursor: 'pointer',
-      marginTop: '150px',
+      marginTop: '100px',
       marginLeft: '500px',
     }}>
       {item && (
-        <div >
+        <div>
           <img
             src={item.image}
             alt={item.title}

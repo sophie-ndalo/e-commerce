@@ -21,6 +21,7 @@ const UserInformationForm = () => {
     };
 
     // You can do something with the user data here (e.g., submit it to a server)
+    console.log(user); // Displaying collected user data in the console
 
     // Redirect to the login page
     navigate("/login");
@@ -28,7 +29,7 @@ const UserInformationForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ marginLeft: "455px", marginTop: "100px"}}>
         <div>
           <label htmlFor="first-name">First Name:</label>
           <input
@@ -37,6 +38,7 @@ const UserInformationForm = () => {
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
+            style={{ marginLeft: "55px", width: "40%", height: "40px", borderRadius: "5px",marginTop: "50px" }}
           />
         </div>
 
@@ -48,6 +50,7 @@ const UserInformationForm = () => {
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
+            style={{ marginLeft: "55px", width: "40%", height: "40px", borderRadius: "5px",marginTop: "50px" }}
           />
         </div>
 
@@ -59,6 +62,7 @@ const UserInformationForm = () => {
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
             required
+            style={{ marginLeft: "55px", width: "40%", height: "40px", borderRadius: "5px",marginTop: "50px" }}
           />
         </div>
 
@@ -69,16 +73,17 @@ const UserInformationForm = () => {
             value={shippingAddress}
             onChange={(e) => setShippingAddress(e.target.value)}
             required
+            style={{ marginLeft: "50px", width: "40%", borderRadius: "5px", marginTop: "50px" }}
           />
         </div>
 
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" style={{ marginLeft: "355px", width: "5%", height: "40px", borderRadius: "5px", backgroundColor: "#7A4988", color: "white",marginTop: "50px" }}>Submit</button>
         </div>
 
         {/* Add a Link to the home page */}
         <Link to="/">
-          <p>
+          <p style={{color: "red"}}>
             <FaAngleLeft /> Back & Continue Shopping
           </p>
         </Link>

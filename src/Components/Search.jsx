@@ -9,7 +9,7 @@ function Search({ onSearch }) {
         type="text"
         placeholder="Search..."
         onChange={(e) => onSearch(e.target.value)} // Call the onSearch prop with the search input
-        style={{ borderRadius: "5px",height: "40px", width: "725px", marginTop: "20px", fontFamily:  "'Roboto Slab', serif", marginLeft: "10px", fontSize: "17px" }}
+        style={{ borderRadius: "5px",height: "40px", width: "700px", marginTop: "20px", fontFamily:  "'Roboto Slab', serif", marginLeft: "10px", fontSize: "17px" }}
       />
     </div>
   );

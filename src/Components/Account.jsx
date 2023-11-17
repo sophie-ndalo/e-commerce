@@ -3,13 +3,13 @@ import {
   FaAngleDown,
   FaAngleUp,
   FaUser,
-  FaCartArrowDown,
   FaHeart,
   FaShoppingBag,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { useAuth } from "../AuthContext";
+
 
 function Account() {
   const [authUser, setAuthUser] = useState(null);
@@ -81,10 +81,9 @@ function Account() {
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
     zIndex: 1,
     listStyle: "none",
-    width: "220px",
+    width: authUser ? "220px" :"120px",
     backgroundColor: "white",
-    height: "180px",
-    
+    height: authUser ? "180px" : "90px", // Set different heights based on authentication status
   };
 
   return (
