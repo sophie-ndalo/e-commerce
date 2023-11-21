@@ -51,9 +51,9 @@ function Navbar({ cart = [], updateCart, selectedProduct }) {
                 </div>
               )}
             </span>
-            <Link to="/admin">Admin</Link>
-            <Link to="/">Home</Link>
-            <Account />
+            <Link className="admin-link" to="/admin">Admin</Link>
+            <Link className="home-link" to="/">Home</Link>
+            <Account className="account"/>
             <CartIcon  className="cart" itemCount={cartItemCount} />
           </div>
         </div>

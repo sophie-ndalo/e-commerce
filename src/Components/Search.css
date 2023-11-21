@@ -1,0 +1,32 @@
+.search-container {
+    margin-top: 100px;
+    width: 70%;
+    margin-left: 15%;
+    background-color: white;
+    height: 80px;
+  }
+  
+  .search-input {
+    border-radius: 5px;
+    height: 40px;
+    width: 700px;
+    margin-top: 20px;
+    font-family: 'Roboto Slab', serif;
+    margin-left: 10px;
+    font-size: 17px;
+    /* Additional styles as needed */
+  }
+  
+  @media screen and (max-width: 768px) {
+
+    .search-container {
+        margin-top: 100px;
+        width: 70%;
+        margin-left: 15%;
+        background-color: white;
+        height: 80px;
+      }
+      .search-input{
+        width: 90%;
+      }
+  }

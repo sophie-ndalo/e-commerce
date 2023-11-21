@@ -118,8 +118,16 @@
     left: 0;
   }
 
-  /* ... (previous styles) */
+  .menu {
+    width: 700px;
+  }
 
+  .account {
+
+  
+  }
+
+  
 /* Media queries for responsiveness */
 @media screen and (min-width: 1024px) {
     /* Hide sidebar on tablet and laptop screens */
@@ -142,23 +150,39 @@
     
     .menu {
         margin-left: -220px;
-        background-color: red;
     }
     .cart {
         margin-right:20px;
-        background-color: red;
     }
   }
   
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
     /* Adjustments for smaller screens if needed */
     /* Example: Make the logo font size smaller */
     .logo h1 {
       font-size: 1.2rem;
     }
+    .cart{
+      display: none;
+    }
+    .admin-link{
+      display: none;
+    }
+    .home-link{
+      display: none;
+    }
+    .categories{
+      display: none;
+    }
+    .menu {
+      margin-left: -220px;
+    } 
+    .menu {
+      width: 500px;
+    }
   }
   
-  @media screen and (max-width: 480px) {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
     /* Adjustments for mobile screens if needed */
     /* Example: Hide the logo text and only show the star icon */
     .logo h1 {
@@ -168,6 +192,25 @@
     .logo h1 span {
       display: none;
     }
+    .cart{
+      display: none;
+    }
+    .admin-link{
+      display: none;
+    }
+    .home-link{
+      display: none;
+    }
+    .categories{
+      display: none;
+    }
+    .menu {
+      margin-left: -430px;
+     
+    } 
+    /* .account{
+      margin-right: 60px;
+    } */
   }
   
   

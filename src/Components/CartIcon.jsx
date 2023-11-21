@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import './CartIcon.css';
 
 function CartIcon() {
   const [itemCount, setItemCount] = useState(0);
@@ -20,37 +21,12 @@ function CartIcon() {
     window.location.reload();
   };
 
-  const cartIconStyle = {
-    display: 'flex',
-    alignItems: 'center',
-  };
-
-  const itemCountStyle = {
-    color: 'white',
-    backgroundColor: '#7A4988',
-    borderRadius: '50%',
-    height: '20px',
-    width: '20px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: '5px', // Adjust this margin to move the count inside the icon
-    marginTop: '-20px', // Adjust this margin to align it with the icon
-  };
-  
-
-  const cartText = {
-    marginRight: '300px',
-    marginTop: "20px",
-    fontFamily: "'Roboto Slab', serif", 
-  };
-
   return (
-    <div style={cartIconStyle}>
-      <a href="/cart" onClick={handleCartIconClick} style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
-        <AiOutlineShoppingCart style={{ marginRight: '5px', height: '25px', width: '25px', marginTop:"20px" }} />
-        <span style={itemCountStyle}>{itemCount}</span>
-        <p style={cartText}>Cart</p>
+    <div className="cart-icon">
+      <a href="/cart" onClick={handleCartIconClick} className="cart-link">
+        <AiOutlineShoppingCart className="cart-icon-svg" />
+        <span className="item-count">{itemCount}</span>
+        <p className="cart-text">Cart</p>
       </a>
     </div>
   );
