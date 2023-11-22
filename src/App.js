@@ -14,13 +14,14 @@ import { AuthProvider } from './AuthContext';
 import Footer from './Components/Footer';
 import SavedItems from './Components/SavedItems';
 import Orders from './Components/Orders';
+import DeliveryDetails from './Components/DeliveryDetails';
 
 function App() {
   const location = useLocation();
 
   // Function to check if the current route is the login, signup, or userinformationform route
   const isSpecialRoute = () => {
-    return location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/userinformationform';
+    return location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/userinformationform' || location.pathname === '/deliverydetails';
   };
 
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/myaccount" element={<Login />} />
           <Route path="/userinformationform" element={<UserInformationForm />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/deliverydetails" element={<DeliveryDetails />} />
           {/* <Route path="/authdetails" element={<AuthDetails />} /> */}
           {/* Add more routes here */}
         </Routes>

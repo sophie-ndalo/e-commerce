@@ -7,24 +7,35 @@ const UserInformationForm = () => {
   const [lastName, setLastName] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const navigate = useNavigate(); // Hook for navigation
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Create a user object with the collected data
-    const user = {
+  const handleSaveUserInfo = () => {
+    // Save user information to local storage or any backend
+    const userInfo = {
       firstName,
       lastName,
       birthDate,
       shippingAddress,
+      phoneNumber,
     };
+    // Example: Saving to local storage
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  };
 
-    // You can do something with the user data here (e.g., submit it to a server)
-    console.log(user); // Displaying collected user data in the console
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    // Redirect to the login page
-    navigate("/login");
+    // Validate all fields are filled before submission
+    if (firstName && lastName && birthDate && shippingAddress && phoneNumber) {
+      // Save user information
+      handleSaveUserInfo();
+
+      // Redirect to the delivery details page
+      navigate("/deliverydetails");
+    } else {
+      alert("Please fill in all fields.");
+    }
   };
 
   return (
@@ -76,12 +87,37 @@ const UserInformationForm = () => {
             style={{ marginLeft: "50px", width: "40%", borderRadius: "5px", marginTop: "50px" }}
           />
         </div>
-
         <div>
-          <button type="submit" style={{ marginLeft: "355px", width: "5%", height: "40px", borderRadius: "5px", backgroundColor: "#7A4988", color: "white",marginTop: "50px" }}>Submit</button>
-        </div>
+             <label htmlFor="phone-number">Phone Number</label>
+             <input 
+             type="text" 
+             id="phone-number"
+             value={phoneNumber}
+             onChange={(e) => setPhoneNumber(e.target.value)}
+             required
+             style={{ marginLeft: "55px", width: "40%", height: "40px", borderRadius: "5px",marginTop: "50px" }}
+         />
 
-        {/* Add a Link to the home page */}
+        </div>
+        
+      
+        <div>
+          <button
+            type="submit"
+            style={{
+              marginLeft: "355px",
+              width: "5%",
+              height: "40px",
+              borderRadius: "5px",
+              backgroundColor: "#7A4988",
+              color: "white",
+              marginTop: "50px",
+            }}
+          >
+            Submit
+          </button>
+        </div>
+       {/* Add a Link to the home page */}
         <Link to="/">
           <p style={{color: "red"}}>
             <FaAngleLeft /> Back & Continue Shopping
