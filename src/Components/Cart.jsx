@@ -41,6 +41,7 @@ function Cart() {
 
     setCart(updatedCart);
     saveCartToLocalStorage(updatedCart);
+    window.location.reload(); // Reload the page after item deletion
   };
 
   // Calculate the total price of all products in the cart
@@ -152,17 +153,22 @@ function Cart() {
                 </div>
                 <button
                   style={{
+                    display: "flex",
+                    alignItems: "center",
+                    backgroundColor: "transparent",
                     border: "none",
-                    background: "none",
                     cursor: "pointer",
                     color: "#7A4988",
                     fontWeight: "bold",
                   }}
                   onClick={() => confirmRemove(item.id)}
                 >
-                  {" "}
-                  <AiOutlineDelete style={{ fontSize: "20px" }} /> REMOVE
+                  <AiOutlineDelete
+                    style={{ fontSize: "20px", marginRight: "5px" }}
+                  />{" "}
+                  REMOVE
                 </button>
+
                 {/* Add a horizontal line between items */}
                 <hr style={{ margin: "10px 0" }} />
               </div>
@@ -242,50 +248,53 @@ function Cart() {
               X
             </button>
             <div
-  style={{
-    display: "flex",
-    marginTop: "20px",
-    position: "relative",
-    justifyContent: "space-between",
-  }}
->
-  <button
-   onClick={() => saveForLater(itemIdToRemove)}
-    style={{
-      color: "#7A4988",
-      backgroundColor: "white",
-      height: "40px",
-      width: "200px",
-      borderRadius: "5px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      marginRight: "10px", // Add margin between buttons
-      
-    }}
-  >
-    {" "}
-    <FaHeart style={{ fontSize: "20px", marginRight: "40px", }} /> SAVE FOR LATER
-  </button>
-  <button
-    onClick={handleConfirm}
-    style={{
-      backgroundColor: "#7A4988",
-      color: "white",
-      height: "40px",
-      width: "200px",
-      borderRadius: "5px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      marginLeft: "10px", // Add margin between buttons
-    }}
-  >
-    <AiOutlineDelete style={{ fontSize: "20px", marginRight: "40px" }} />
-    REMOVE ITEM
-  </button>
-</div>
-
+              style={{
+                display: "flex",
+                marginTop: "20px",
+                position: "relative",
+                justifyContent: "space-between",
+              }}
+            >
+              <button
+                onClick={() => saveForLater(itemIdToRemove)}
+                style={{
+                  color: "#7A4988",
+                  backgroundColor: "white",
+                  height: "40px",
+                  width: "200px",
+                  borderRadius: "5px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginRight: "10px", // Add margin between buttons
+                }}
+              >
+                {" "}
+                <FaHeart
+                  style={{ fontSize: "20px", marginRight: "40px" }}
+                />{" "}
+                SAVE FOR LATER
+              </button>
+              <button
+                onClick={handleConfirm}
+                style={{
+                  backgroundColor: "#7A4988",
+                  color: "white",
+                  height: "40px",
+                  width: "200px",
+                  borderRadius: "5px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginLeft: "10px", // Add margin between buttons
+                }}
+              >
+                <AiOutlineDelete
+                  style={{ fontSize: "20px", marginRight: "40px" }}
+                />
+                REMOVE ITEM
+              </button>
+            </div>
           </div>
         </div>
       )}

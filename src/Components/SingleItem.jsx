@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Cart from './Cart';
-import { FaCartPlus, FaHeart, FaMinus, FaPlus } from 'react-icons/fa';
+import { FaCartPlus, FaHeart } from 'react-icons/fa';
 
 const apiUrl = 'https://fakestoreapi.com/products';
 
@@ -145,19 +145,22 @@ function SingleItem() {
               </div>
             ) : (
               <button
-                onClick={() => addToCart(product)}
-                style={{
-                  width: '200px',
-                  height: '40px',
-                  marginBottom: '20px',
-                  borderRadius: '5px',
-                  backgroundColor: '#7A4988',
-                  fontSize: '18px',
-                  color: 'white',
-                }}
-              >
-                <FaCartPlus style={{ marginRight: '30px' }} />Add to Cart
-              </button>
+              onClick={() => addToCart(product)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '200px',
+                height: '40px',
+                borderRadius: '5px',
+                backgroundColor: '#7A4988',
+                fontSize: '18px',
+                color: 'white',
+              }}
+            >
+              <FaCartPlus style={{ marginRight: '10px' }} />
+              Add to Cart
+            </button>
             )}
           </div>
         </div>
