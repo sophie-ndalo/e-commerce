@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext"; // Update the path accordingly
 
 function Cart() {
