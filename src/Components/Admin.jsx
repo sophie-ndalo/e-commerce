@@ -64,6 +64,7 @@ function Admin() {
             marginLeft: "auto", // Set left margin to auto
             marginRight: "auto", // Set right margin to auto
             borderRadius: "10px",
+            marginTop: "20px",
           }}>
         {filteredProducts.map((product, index) => (
           <Link to={`/productAdmin/${product.id}`} key={product.id}> {/* Use Link to link to SingleItem */}

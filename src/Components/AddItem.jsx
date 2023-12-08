@@ -37,8 +37,8 @@ function AddItem() {
   };
   return (
     <div style={{ marginLeft: "35%", marginTop:"100px"}}>
-      <h2>Add Item</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 style={{marginLeft: "200px",}}>Add Item</h2>
+      <form onSubmit={handleSubmit} style={{marginTop: "20px"}}>
         <div>
           <label>Title:</label>
           <input
