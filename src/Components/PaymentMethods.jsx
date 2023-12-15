@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext"; // Update the path accordingly
 
 function PaymentMethods() {
@@ -20,10 +20,7 @@ function PaymentMethods() {
     }
   }, []);
 
-  const saveCartToLocalStorage = (updatedCart) => {
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
+  
   const handlePaymentChange = (e) => {
     setSelectedPayment(e.target.value);
   };
